@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "project": "Password Cracking & Strength Testing",
+    "domain": "CyberSecurity"
+  },
+  {
+    "id": 2,
+    "project": "Build a minor-selection web portal",
+    "domain": "Web Development"
+  },
+  {
+    "id": 3,
+    "project": "BlueJacking and finding vulnerabilities in Bluetooth devices",
+    "domain": "CyberSecurity"
+  }
+]
