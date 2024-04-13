@@ -1,8 +1,5 @@
-# React + Vite
+Web Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a web portal made for facilitating the communication between a mentor and a student group while also keeping other higher-ups in the loop.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project uses React for the frontend and Expressjs & MongoDB for the backend.
