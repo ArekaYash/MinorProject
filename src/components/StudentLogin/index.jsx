@@ -50,7 +50,7 @@ const StudLogin = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
           />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red' ,fontSize: '14px'}}>{error}</p>}
         <button type="submit">Login</button>
       </form>
     </div>

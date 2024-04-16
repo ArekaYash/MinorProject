@@ -5,7 +5,7 @@ import './index.css';
 const EvaluatorPage = () => {
   return (
     <>
-      <Navbar />
+      <Navbar isAuthenticated={true} userRole={'faculty'}/>
       <div className="page-container">
         <h2>Evaluator Page</h2>
         <p>Welcome, Evaluator!</p>

@@ -12,8 +12,11 @@ import PrivateRoute from './components/PrivateRoute';
 import FacultyDashboard from './components/FacultyDashboard';
 import StudentDashboard from "./components/Student";
 import ErrorPage from "./components/ErrorPage";
-
+import AcademicCoordinatorPage from "./components/ACPage";
+import EvaluatorPage from "./components/EvaluatorPage";
+import MentorPage from "./components/MentorPage";
 function App() {
+  
   return (
     <AuthProvider>
 
@@ -33,6 +36,9 @@ function App() {
           <Route path="/faculty" element={
             <PrivateRoute element={<FacultyDashboard />} />
           }></Route> */}
+          <Route path ="/faculty/academic-coordinator" element={<AcademicCoordinatorPage/>}/>
+          <Route path ="/faculty/evaluator" element={<EvaluatorPage/>}/>
+          <Route path ="/faculty/mentor" element={<MentorPage/>}/>
           <Route path="/Students" element ={<StudentDashboard/>}/>
           <Route path="/faculty" element ={<FacultyDashboard/>}/>
           <Route path="*" element={<ErrorPage />} />

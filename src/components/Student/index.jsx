@@ -8,7 +8,7 @@ const StudentDashboard = () => {
   console.log(user);
   return (
     <>
-      <Navbar />
+      <Navbar isAuthenticated={true} userRole={'student'}/>
       <div className="dashboard-container">
         <h2>Student Dashboard</h2>
         <p>Welcome to the Student Dashboard!</p>
