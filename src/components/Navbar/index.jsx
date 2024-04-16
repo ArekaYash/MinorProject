@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./index.css";
 
-const Navbar = () => {
+const Navbar = ({isAuthenticated}) => {
+  const location = useLocation();
+  const isActiveRoute = (routePath) => {
+    return location.pathname === routePath;
+  };
+
   return (
     <>
       <div className="main-page">
@@ -14,11 +19,29 @@ const Navbar = () => {
             <li>
               <Link to="/home">Home</Link>
             </li>
+
+            {isAuthenticated && (
+          <>
             <li>
-              <Link to="/projects">Projects</Link>
+              <Link
+                to="/projects"
+                className={isActiveRoute('/projects') ? 'active' : ''}
+              >
+                Projects
+              </Link>
             </li>
             <li>
-              <Link to="/add-project">Add Project</Link>
+              <Link
+                to="/add-project"
+                className={isActiveRoute('/add-project') ? 'active' : ''}
+              >
+                Add Project
+              </Link>
+            </li>
+          </>
+        )}
+            <li>
+              <Link to="/login"className={isActiveRoute('/login')?'active':''}> Login </Link>
             </li>
           </ul>
         </nav>

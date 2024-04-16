@@ -1,39 +1,80 @@
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #444;
+  border-radius: 10px;
+}
+.carousel-container {
+  max-width: 600px;
+  display: flexbox;
+  margin: 0 auto;
+  
+}
+.slick-slide {
+  display: flex;
+  justify-content: center;
+}
+.card {
+  display: flex;
+  flex-direction: flex-start;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+  align-content: center;  
+}
+h2{
+  color: #f7cc53;
+  text-align: center;
+}
+.card img {
+  max-height: 300px;
+  max-width: 200px;
+  border-radius: 50%;
+  object-fit:scale-down;
+  margin-left: 10px;
+}
+.card .info {
+  flex: 1; 
+}
+.card h4 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  
+}
+
+.card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  white-space: pre-line;
+}
+
+.descript{
+  margin-right: 100px;
+  margin-left: 100px;
+}
 .title {
   font-size: 45px;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
+
 .title > h3 {
   text-align: center;
   color: #fff;
   font-weight: bold;
   margin-bottom: 20px;
+  margin-top: 150px;
 }
+
 span {
   color: #f7cc53;
 }
-.button {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-.button a {
-  flex-direction: column;
-  text-decoration: none;
-  border: 2px solid #f7cc53;
-  border-radius: 20px;
-  padding: 20px;
-  text-transform: uppercase;
-  color: #fff;
-  font-weight: bold;
-}
-.button a:hover {
-  background: #f7cc53;
-  transition: 1.2s ease;
-  color: black;
-  border: 2px solid #fff;
-}
+
+
 .small-tagline {
   font-size: 20px;
   display: flex;
@@ -41,6 +82,7 @@ span {
   flex-direction: column;
   text-align: center;
 }
+
 .small-tagline p {
   color: #fff;
   top: 50%;

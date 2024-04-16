@@ -1,0 +1,17 @@
+.page-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page-container h2 {
+    color: #333;
+  }
+  
+  .page-container p {
+    color: #666;
+  }
+  
