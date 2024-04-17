@@ -6,10 +6,9 @@ form {
   border-radius: 10px;
 }
 .carousel-container {
-  max-width: 600px;
-  display: flexbox;
+  width: 40%;
+  height: 50%;
   margin: 0 auto;
-  
 }
 .slick-slide {
   display: flex;
@@ -23,9 +22,9 @@ form {
   border-radius: 8px;
   background-color: #fff;
   text-align: center;
-  align-content: center;  
+  align-content: center;
 }
-h2{
+h2 {
   color: #f7cc53;
   text-align: center;
 }
@@ -33,16 +32,15 @@ h2{
   max-height: 300px;
   max-width: 200px;
   border-radius: 50%;
-  object-fit:scale-down;
+  object-fit: scale-down;
   margin-left: 10px;
 }
 .card .info {
-  flex: 1; 
+  flex: 1;
 }
 .card h4 {
   font-size: 24px;
   margin-bottom: 5px;
-  
 }
 
 .card p {
@@ -51,7 +49,7 @@ h2{
   white-space: pre-line;
 }
 
-.descript{
+.descript {
   margin-right: 100px;
   margin-left: 100px;
 }
@@ -72,8 +70,8 @@ h2{
 
 span {
   color: #f7cc53;
+  text-shadow: 1px 1px #000000;
 }
-
 
 .small-tagline {
   font-size: 20px;

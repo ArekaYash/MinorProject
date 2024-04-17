@@ -40,6 +40,17 @@
   background-clip: text;
   transition: 1s;
 }
+.logout {
+  background-color: red;
+  border-radius: 4px;
+  padding: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.logout:hover {
+  transform: scale(1.05);
+}
 #navbar ul li a:hover {
   --_p: 0%;
 }

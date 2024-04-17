@@ -1,11 +1,11 @@
-import React from 'react';
-import Navbar from '../Navbar';
-import './index.css'; 
+import React from "react";
+import Navbar from "../Navbar";
+import "./index.css";
 
 const MentorPage = () => {
   return (
     <>
-      <Navbar />
+      <Navbar isAuthenticated={true} />
       <div className="page-container">
         <h2>Mentor Page</h2>
         <p>Welcome, Mentor!</p>

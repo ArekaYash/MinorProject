@@ -1,47 +1,45 @@
-
 .dashboard-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  /* .banner-img{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* .banner-img{
     height: 800px;
     justify-content: center;
   } */
-  .dashboard-container h2 {
-    color: #333;
-  }
-  
-  .dashboard-container p {
-    color: #666;
-  }
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+.dashboard-container h2 {
+  color: #333;
+}
+
+.dashboard-container p {
+  color: #666;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .button-container button {
-    padding: 10px;
-    border: none;
-    margin: 0 5px;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
-    white-space: nowrap;
-
+  padding: 10px;
+  border: none;
+  margin: 0 5px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 .button-text {
   text-decoration: none;
-  color: inherit; 
-  padding: 0; 
+  color: inherit;
+  padding: 0;
 }
-.dashboard-button{
+.dashboard-button {
   background-color: transparent;
   border: none;
   padding: 0;
@@ -50,5 +48,5 @@
 }
 
 .button-container button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
