@@ -15,6 +15,9 @@ import ErrorPage from "./components/ErrorPage";
 import AcademicCoordinatorPage from "./components/ACPage";
 import EvaluatorPage from "./components/EvaluatorPage";
 import MentorPage from "./components/MentorPage";
+import StudentRegister from "./components/StudentRegister";
+import FacultyRegister from "./components/FacultyRegister";
+
 function App() {
   return (
     <AuthProvider>
@@ -28,6 +31,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/login-faculty" element={<FacultyLogin />} />
           <Route path="/login-student" element={<StudLogin />} />
+          <Route path="/stud-register" element={<StudentRegister />} />
+          <Route path="/faculty-register" element={<FacultyRegister />} />
+
           {/* <Route path="/Students" element={
             <PrivateRoute element={<StudentDashboard />}/>}>
             </Route>

@@ -14,7 +14,7 @@ const Projects = () => {
   }
   return (
     <>
-      <Navbar />
+      <Navbar isAuthenticated={true} />
       <div className="projects">
         <div className="background">
           <div className="title">

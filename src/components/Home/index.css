@@ -16,24 +16,21 @@ form {
 }
 .card {
   display: flex;
-  flex-direction: flex-start;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #fff;
-  text-align: center;
-  align-content: center;
 }
 h2 {
   color: #f7cc53;
   text-align: center;
 }
 .card img {
-  max-height: 300px;
-  max-width: 200px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
-  object-fit: scale-down;
-  margin-left: 10px;
+  object-fit: cover;
+  margin-right: 10px;
 }
 .card .info {
   flex: 1;
@@ -41,6 +38,10 @@ h2 {
 .card h4 {
   font-size: 24px;
   margin-bottom: 5px;
+}
+
+.text {
+  flex: 1;
 }
 
 .card p {

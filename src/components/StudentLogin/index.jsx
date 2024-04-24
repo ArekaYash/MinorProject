@@ -54,6 +54,12 @@ const StudLogin = () => {
             />
             {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
             <button type="submit">Login</button>
+            <p style={{ textAlign: "center", marginTop: "10px" }}>
+              Don't have an account?{" "}
+              <a href="/stud-register" style={{ color: "blue" }}>
+                Sign Up
+              </a>
+            </p>
           </form>
         </div>
       </div>
