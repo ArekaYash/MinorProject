@@ -9,24 +9,24 @@ const Home = () => {
   const creators = [
     {
       name: "Harshit Saraswat",
-      description: "Backend Developer\n B.Tech. CSE (Spl.CSF)\n 3rd Year,UPES",
+      description: "Backend Developer\n B.Tech. CSE (Spl.CSF)\n 3rd Year, UPES",
       imageUrl: "src/assets/Harshit.jpg",
     },
     {
       name: "Manan Singh",
-      description: "Researcher\n B.Tech. CSE (Spl.CSF)\n 3rd Year,UPES",
+      description: "Researcher\n B.Tech. CSE (Spl.CSF)\n 3rd Year, UPES",
       imageUrl: "",
     },
     {
       name: "Siddhant Srivastava",
       description:
-        "Frontend Developer\n B.Tech.(H) CSE (Spl.CSF)\n 3rd Year,UPES",
+        "Frontend Developer\n B.Tech.(H) CSE (Spl.CSF)\n 3rd Year, UPES",
       imageUrl: "src/assets/Siddhant1.JPG",
     },
     {
       name: "Yashvardhan Arekapudi",
       description:
-        "Frontend Developer\n B.Tech.(H) CSE (Spl.CSF)\n 3rd Year,UPES",
+        "Frontend Developer\n B.Tech.(H) CSE (Spl.CSF)\n 3rd Year, UPES",
       imageUrl: "src/assets/Yashvardhan.jpeg",
     },
   ];
@@ -49,22 +49,10 @@ const Home = () => {
           </h3>
         </div>
         <p className="descript">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto
-          ab, corrupti nostrum corporis enim officiis, voluptatum eligendi atque
-          id dolorum, voluptatem explicabo saepe tenetur impedit est quae velit
-          harum fugit! Natus fugiat veritatis alias, tempore numqtibus atque
-          nostrum magnam ab fugit error natus aliquid quis facere eveniet
-          provident cupiditate ducimus exercitationem excepturi accusantium hic
-          soluta fugiat molestiae, maiores eprehenderit provident? Corrupti
-          facere ex, doloremque labore esse ullam, at quaerat consequatur
-          blanditiis fuga nulla minus veniam perferendis quo fugiat obcaecati
-          snctio culpa, quis hic necessitatibus mollitia vel suscipit, quos
-          doloribus officia dolor earum excepturi commodi esse nam tempora
-          fugiat error. Et repellat sint veniam. Amet dolor qui veritatis
-          debitis nihil cumque id possimus aut sint atque eligendi molestias
-          saepe corrupti earum expedita dolores aliquam sit nisi, obcaecati
-          commodi quos unde recusandae! Earum numquam delectus animi quae
-          voluptatum molestiae quidem beatae maxime corrupti cupiditate!
+        Welcome to the Minor Project Selection Portal, a cutting-edge platform designed to revolutionize academic mentorship and project collaboration. In the dynamic world of academia, effective mentorship is key to nurturing students through their projects. However, traditional mentor-student pairing methods often lack efficiency and organization.
+        </p>
+        <p className="descript">
+        Our portal addresses these challenges by offering a user-friendly interface that streamlines the project evaluation process. Not only Mentors, this portal is accessible to Evaluators and Academic Coordinator also. Students can add projects, choose mentors, and benefit from improved communication and collaboration. Mentors, on the other hand, can efficiently manage their mentees, optimize resource utilization, and set project deadlines. Evaluators can grade the projects and submit them to Academic Co-Ordinators who can monitor all the projects under them.
         </p>
         <br></br>
         <div className="carousel-container">
@@ -83,6 +71,8 @@ const Home = () => {
             ))}
           </Slider>
         </div>
+      <br></br>
+      <br></br>
       </div>
     </>
   );

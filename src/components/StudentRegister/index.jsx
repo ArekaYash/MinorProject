@@ -6,27 +6,39 @@ import Navbar from "../Navbar";
 const StudentLogin = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [sapid, setSapId] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [user, setUser] = useState({
+    name: "", sap: "", email: "", password: "", cpassword: ""
+  });
+
+  let name, value;
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+
+    setUser({ ...user, [name]: value })
+  }
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    // You can add validation logic here if needed
+    if (!user.email.endsWith("@stu.upes.ac.in")) {
+      setError("Invalid Email for a Student! Please Try Again!");
+      return;
+    }
+    if (user.password !== user.cpassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
     try {
-      await login(email, password);
+      await login(user.email, user.password);
       setIsAuthenticated(true);
-      navigate("/student-dashboard");
+      navigate("/login-student");
     } catch (error) {
-      console.error("Login failed:", error.message);
-      setError("Error Logging in. Please try again!!");
-      setIsAuthenticated(false);
+      setError("Failed to register. Please try again.");
+      console.error("Registration Error:", error);
     }
   };
 
@@ -38,33 +50,47 @@ const StudentLogin = () => {
           <h2 align="center">
             <span> Sign Up </span>{" "}
           </h2>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleFormSubmit}>
             <label>Name:</label>
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="name"
+              value={user.name}
+              onChange={handleInputs}
               required
             />
             <label>SAP ID:</label>
             <input
               type="text"
-              value={sapid}
-              onChange={(e) => setSapId(e.target.value)}
+              name="sap"
+              value={user.sap}
+              onChange={handleInputs}
               required
             />
             <label>Email:</label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={user.email}
+              onChange={handleInputs}
               required
             />
             <label>Password:</label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={user.password}
+              onChange={handleInputs}
+              autoComplete="off"
+              required
+            />
+            <label>Confirm Password:</label>
+            <input
+              type="password"
+              name="cpassword"
+              value={user.cpassword}
+              onChange={handleInputs}
+              autoComplete="off"
               required
             />
             {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
