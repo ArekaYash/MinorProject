@@ -8,7 +8,6 @@ import Schedule from "./components/Schedule";
 import Login from "./components/Login";
 import FacultyLogin from "./components/FacultyLogin";
 import StudLogin from "./components/StudentLogin";
-import PrivateRoute from "./components/PrivateRoute";
 import FacultyDashboard from "./components/FacultyDashboard";
 import StudentDashboard from "./components/Student";
 import ErrorPage from "./components/ErrorPage";
@@ -33,13 +32,6 @@ function App() {
           <Route path="/login-student" element={<StudLogin />} />
           <Route path="/stud-register" element={<StudentRegister />} />
           <Route path="/faculty-register" element={<FacultyRegister />} />
-
-          {/* <Route path="/Students" element={
-            <PrivateRoute element={<StudentDashboard />}/>}>
-            </Route>
-          <Route path="/faculty" element={
-            <PrivateRoute element={<FacultyDashboard />} />
-          }></Route> */}
           <Route
             path="/faculty/academic-coordinator"
             element={<AcademicCoordinatorPage />}

@@ -6,11 +6,13 @@ const EvaluatorPage = () => {
   return (
     <>
       <Navbar isAuthenticated={true} userRole={"faculty-AC"} />
+      <div className="banner-img">
+
       <div className="page-container">
         <h2>Evaluator Page</h2>
         <p>Welcome, Evaluator!</p>
       </div>
-      <div className="dash"></div>
+      </div>
     </>
   );
 };

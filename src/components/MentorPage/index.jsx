@@ -6,9 +6,12 @@ const MentorPage = () => {
   return (
     <>
       <Navbar isAuthenticated={true} />
+      <div className="banner-img">
+
       <div className="page-container">
         <h2>Mentor Page</h2>
         <p>Welcome, Mentor!</p>
+      </div>
       </div>
     </>
   );

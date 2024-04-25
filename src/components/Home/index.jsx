@@ -21,7 +21,7 @@ const Home = () => {
       name: "Siddhant Srivastava",
       description:
         "Frontend Developer\n B.Tech.(H) CSE (Spl.CSF)\n 3rd Year,UPES",
-      imageUrl: "src/assets/Siddhant.JPG",
+      imageUrl: "src/assets/Siddhant1.JPG",
     },
     {
       name: "Yashvardhan Arekapudi",
