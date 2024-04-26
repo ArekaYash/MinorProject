@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 
 const StudentLogin = () => {
+  // const history = useHistory();
   const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -21,26 +22,37 @@ const StudentLogin = () => {
   }
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleFormSubmit = async (e) => {
+  const PostData = async(e) =>{
     e.preventDefault();
-    if (!user.email.endsWith("@stu.upes.ac.in")) {
+
+    const{name,sap,email,password,cpassword}=user;
+    if (!email.endsWith("@stu.upes.ac.in")) {
       setError("Invalid Email for a Student! Please Try Again!");
       return;
     }
-    if (user.password !== user.cpassword) {
+    if (password !== cpassword) {
       setError("Passwords do not match");
       return;
     }
 
-    try {
-      await login(user.email, user.password);
-      setIsAuthenticated(true);
-      navigate("/login-student");
-    } catch (error) {
-      setError("Failed to register. Please try again.");
-      console.error("Registration Error:", error);
+    const res= await fetch("apitodirect",{ //yaha pe backend ka route daalna hai /register
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,sap,email,password
+      })
+    });
+    const data = await res.json();
+    if (data.status === 400 || !data){
+      setError("Something went wrong! Please Try Again!");
     }
-  };
+    else{
+      window.alert("Registration Successful ! Login to your Account. ");
+      navigate("/login-student");
+    }
+  }
 
   return (
     <>
@@ -50,7 +62,7 @@ const StudentLogin = () => {
           <h2 align="center">
             <span> Sign Up </span>{" "}
           </h2>
-          <form onSubmit={handleFormSubmit}>
+          <form method="POST">
             <label>Name:</label>
             <input
               type="text"
@@ -94,7 +106,7 @@ const StudentLogin = () => {
               required
             />
             {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
-            <button type="submit">Login</button>
+            <button type="submit" onClick={PostData}>Login</button>
           </form>
         </div>
       </div>
