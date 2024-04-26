@@ -4,29 +4,41 @@ import "./index.css";
 import { useNavigate } from "react-router-dom";
 
 const AddProject = () => {
-  const [projectName, setProjectName] = useState("");
-  const [members, setMembers] = useState([]);
-  const [domain, setDomain] = useState("");
-  const [mentor, setMentor] = useState("");
-  const [ac, setAC] = useState("");
-  const [evaluator, setEvaluator] = useState("");
-  const [customDomain, setCustomDomain] = useState("");
+  const [formData, setFormData] = useState({
+    projectName: "",
+    members: [],
+    domain: "",
+    mentor: "",
+    ac: "",
+    evaluator: "",
+    customDomain: "",
+  });
 
   const navigate = useNavigate();
 
   const handleSubmitButton = (e) => {
     e.preventDefault();
-    if (projectName === "") {
+    const {
+      projectName,
+      members,
+      domain,
+      mentor,
+      ac,
+      evaluator,
+      customDomain,
+    } = formData;
+
+    if (!projectName) {
       window.alert("Enter project name");
     } else if (members.length === 0) {
       window.alert("Enter at least one member name");
-    } else if (domain === "" && customDomain === "") {
+    } else if (!domain && !customDomain) {
       window.alert("Enter domain");
-    } else if (mentor === "") {
+    } else if (!mentor) {
       window.alert("Enter mentor name");
-    } else if (ac === "") {
+    } else if (!ac) {
       window.alert("Enter academic coordinator name");
-    } else if (evaluator === "") {
+    } else if (!evaluator) {
       window.alert("Enter evaluator name");
     } else {
       const projectDetails = {
@@ -37,10 +49,7 @@ const AddProject = () => {
         ac,
         evaluator,
       };
-      let savedProjects = [];
-      if (localStorage.getItem("projects")) {
-        savedProjects = JSON.parse(localStorage.getItem("projects"));
-      }
+      let savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
       localStorage.setItem(
         "projects",
         JSON.stringify([...savedProjects, projectDetails])
@@ -50,27 +59,52 @@ const AddProject = () => {
     }
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const handleMemberChange = (e, index) => {
-    const updatedMembers = [...members];
+    const updatedMembers = [...formData.members];
     updatedMembers[index] = e.target.value;
-    setMembers(updatedMembers);
+    setFormData({ ...formData, members: updatedMembers });
   };
 
   const handleAddMember = () => {
-    setMembers([...members, ""]);
+    if (formData.members.length<4){
+      setFormData({ ...formData, members: [...formData.members, ""] })
+    }
+    else{
+      window.alert("cannot add more members")
+    }
+  };
+  const renderMemberInputs = () => {
+    return formData.members.map((member, index) => (
+      <input
+        key={index}
+        type="text"
+        className="form-control"
+        placeholder={`Member ${index + 1}`}
+        value={member}
+        onChange={(e) => handleMemberChange(e, index)}
+        required
+      />
+    ));
   };
 
   return (
     <div>
-      <Navbar />
+      <Navbar isAuthenticated={true} />
+
+      <div className="banner-img">
       <div className="background">
         <div className="title">
           <h2>Add Project</h2>
         </div>
       </div>
-      <div className="container">
-        <form>
-          <div className="form-group">
+      <div >
+        <form onSubmit={handleSubmitButton}>
+          <div c>
             <label htmlFor="projectName">Project Name</label>
             <input
               type="text"
@@ -78,57 +112,47 @@ const AddProject = () => {
               name="projectName"
               className="form-control"
               placeholder="Enter Project Name"
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
+              value={formData.projectName}
+              onChange={handleChange}
               required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="members">Members</label>
-            {members.map((member, index) => (
-              <input
-                key={index}
-                type="text"
-                className="form-control"
-                placeholder={`Member ${index + 1}`}
-                value={member}
-                onChange={(e) => handleMemberChange(e, index)}
-                required
               />
-            ))}
-            <button type="button" onClick={handleAddMember}>
-              Add Member
-            </button>
           </div>
-          <div className="form-group">
+          <div>
+            <label htmlFor="members">Members</label>
+            {renderMemberInputs()}
+            {formData.members.length < 4 && (
+              <button type="button" onClick={handleAddMember}>
+                Add Member
+              </button>
+            )}
+          </div>
+          <div >
             <label htmlFor="domain">Domain</label>
             <select
               id="domain"
               name="domain"
               className="form-control"
-              value={domain}
-              onChange={(e) => setDomain(e.target.value)}
+              value={formData.domain}
+              onChange={handleChange}
               required
-            >
+              >
               <option value="">Select Domain</option>
               <option value="Web Development">Web Development</option>
               <option value="CyberSecurity">CyberSecurity</option>
-              <option value="Custom" onClick={() => setDomain("")}>
-                Custom
-              </option>
+              <option value="Custom">Custom</option>
             </select>
-            {domain === "Custom" && (
+            {formData.domain === "Custom" && (
               <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Custom Domain"
-                value={customDomain}
-                onChange={(e) => setCustomDomain(e.target.value)}
-                required
+              type="text"
+              className="form-control"
+              placeholder="Enter Custom Domain"
+              value={formData.customDomain}
+              onChange={handleChange}
+              required
               />
             )}
           </div>
-          <div className="form-group">
+          <div >
             <label htmlFor="mentor">Mentor</label>
             <input
               type="text"
@@ -136,12 +160,12 @@ const AddProject = () => {
               name="mentor"
               className="form-control"
               placeholder="Enter Mentor Name"
-              value={mentor}
-              onChange={(e) => setMentor(e.target.value)}
+              value={formData.mentor}
+              onChange={handleChange}
               required
-            />
+              />
           </div>
-          <div className="form-group">
+          <div >
             <label htmlFor="ac">Academic Coordinator</label>
             <input
               type="text"
@@ -149,12 +173,12 @@ const AddProject = () => {
               name="ac"
               className="form-control"
               placeholder="Enter Academic Coordinator Name"
-              value={ac}
-              onChange={(e) => setAC(e.target.value)}
+              value={formData.ac}
+              onChange={handleChange}
               required
-            />
+              />
           </div>
-          <div className="form-group">
+          <div >
             <label htmlFor="evaluator">Evaluator</label>
             <input
               type="text"
@@ -162,21 +186,18 @@ const AddProject = () => {
               name="evaluator"
               className="form-control"
               placeholder="Enter Evaluator Name"
-              value={evaluator}
-              onChange={(e) => setEvaluator(e.target.value)}
+              value={formData.evaluator}
+              onChange={handleChange}
               required
-            />
+              />
           </div>
-          <div className="form-group">
-            <button
-              type="submit"
-              className="submit-button"
-              onClick={handleSubmitButton}
-            >
+          <div >
+            <button type="submit" className="submit-button">
               Submit
             </button>
           </div>
         </form>
+              </div>
       </div>
     </div>
   );
