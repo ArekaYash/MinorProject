@@ -1,4 +1,5 @@
 import { useState } from "react";
+// import axios from 'axios';
 import Navbar from "../Navbar";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,7 @@ const AddProject = () => {
   const navigate = useNavigate();
 
   const handleSubmitButton = (e) => {
+    // async
     e.preventDefault();
     const {
       projectName,
@@ -56,6 +58,44 @@ const AddProject = () => {
       );
       window.alert("Form Submitted Successfully");
       navigate("/Home");
+      // try {
+      //   // Send POST request to backend server
+      //   const response = await axios.post('https://your-backend-api.com/projects', projectDetails);
+    
+      //   // Handle success response
+      //   console.log("Project details submitted successfully:", response.data);
+      //   window.alert("Project details submitted successfully");
+      //   navigate("/Home");
+      // } catch (error) {
+      //   // Handle error
+      //   console.error("Error submitting project details:", error);
+      //   window.alert("Failed to submit project details. Please try again later.");
+      // }
+    
+      //use fetch method also
+      // try {
+      //   const response = await fetch('your_backend_endpoint', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(projectDetails),
+      //   });
+    
+      //   if (!response.ok) {
+      //     throw new Error('Network response was not ok');
+      //   }
+    
+      //   const responseData = await response.json();
+      //   console.log('Project details sent successfully:', responseData);
+    
+      //   // Handle any further actions after successful submission (e.g., redirecting the user)
+      //   window.alert("Form Submitted Successfully");
+      //   navigate("/Home");
+      // } catch (error) {
+      //   console.error('Error sending project details to backend:', error);
+      //   window.alert('An error occurred while submitting the form. Please try again later.');
+      // }
     }
   };
 
@@ -78,10 +118,15 @@ const AddProject = () => {
       window.alert("cannot add more members")
     }
   };
+  const handleRemoveMember = (index) => {
+    const updatedMembers = formData.members.filter((_, i) => i !== index);
+    setFormData({ ...formData, members: updatedMembers });
+  };
+  
   const renderMemberInputs = () => {
     return formData.members.map((member, index) => (
+      <div key={index} className="member-input">
       <input
-        key={index}
         type="text"
         className="form-control"
         placeholder={`Member ${index + 1}`}
@@ -89,6 +134,16 @@ const AddProject = () => {
         onChange={(e) => handleMemberChange(e, index)}
         required
       />
+      {index > 0 && ( // Allow removing only for additional members (not the first one)
+        <button
+          type="button"
+          className="remove-btn"
+          onClick={() => handleRemoveMember(index)}
+        >
+          Remove
+        </button>
+      )}
+    </div>
     ));
   };
 
@@ -96,7 +151,7 @@ const AddProject = () => {
     <div>
       <Navbar isAuthenticated={true} />
 
-      <div className="banner-img">
+      <div className="banner-img" >
       <div className="background">
         <div className="title">
           <h2>Add Project</h2>
@@ -104,7 +159,7 @@ const AddProject = () => {
       </div>
       <div >
         <form onSubmit={handleSubmitButton}>
-          <div c>
+          <div >
             <label htmlFor="projectName">Project Name</label>
             <input
               type="text"
@@ -121,7 +176,7 @@ const AddProject = () => {
             <label htmlFor="members">Members</label>
             {renderMemberInputs()}
             {formData.members.length < 4 && (
-              <button type="button" onClick={handleAddMember}>
+              <button type="button" className="addbutton" onClick={handleAddMember}>
                 Add Member
               </button>
             )}

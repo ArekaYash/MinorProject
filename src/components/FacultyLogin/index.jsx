@@ -16,6 +16,17 @@ const FacultyLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // const res = await fetch('/routename', {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     email, password
+    //   })
+    // }
+    // )
+    const data = await res.json();
     if (!email.endsWith("@ddn.upes.ac.in")) {
       setError("Invalid Email for a Faculty! Please Try Again!");
       return;
@@ -29,8 +40,15 @@ const FacultyLogin = () => {
       setError("Error Logging in. Please try again!!");
       setIsAuthenticated(false);
     }
+    if (data.status === 400 || !data){
+      setError("Something went wrong! Please Try Again!");
+    }
+    else{
+      window.alert("Login Successful ! ");
+      navigate("/faculty");
+    }
   };
-
+  
   return (
     <>
       <Navbar isAuthenticated={isAuthenticated} />
@@ -39,7 +57,7 @@ const FacultyLogin = () => {
           <h2 align="center">
             <span> Faculty Login </span>{" "}
           </h2>
-          <form onSubmit={handleLogin}>
+          <form method="POST">
             <label>Email:</label>
             <input
               type="text"
@@ -55,7 +73,7 @@ const FacultyLogin = () => {
               required
             />
             {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
-            <button type="submit">Login</button>
+            <button type="submit" onClick={handleLogin}>Login</button>
             <p style={{ textAlign: "center", marginTop: "10px" }}>
               Don't have an account?{" "}
               <a href="/faculty-register" style={{ color: "blue" }}>

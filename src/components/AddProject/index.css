@@ -11,17 +11,37 @@ p {
   margin-bottom: 0.5rem;
 }
 .background .title{
-  padding:150px 0px;
+  padding:150px 0;
 }
 
 label {
-  display: flex;
+  display:flexbox  ;
   align-items: center;
   font-size: 1.125rem;
   margin-bottom: 0.5rem;
 }
-button {
+.remove-btn {
+  margin-left: 10px;
+  background-color: red;
+  color: #fff;
   border: none;
+  margin-top: 0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.addbutton  {
+  border: none;
+  margin-top: 0;
+  margin-left: 192px;
+  
+  /* display: grid; */
+  padding: 10px 20px;
+  font-size: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .container {
   width: 100%;
@@ -62,7 +82,11 @@ form {
     padding: 2.5rem;
   }
 }
-
+.member-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Add margin between member inputs */
+}
 .form-group {
   margin: 0 auto 1.25rem auto;
   padding: 0.25rem;
@@ -73,6 +97,7 @@ form {
   width: 100%;
   height: 2.375rem;
   padding: 0.375rem 0.75rem;
+  flex:1;
 }
 
 .form-control:focus {
