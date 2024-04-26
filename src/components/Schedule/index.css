@@ -66,7 +66,7 @@ form {
 
 .form-group {
   margin: 0 auto 1.25rem auto;
-  padding: 0.25rem;
+  padding: 2 px;
 }
 
 .form-control {
@@ -101,12 +101,48 @@ form {
   resize: vertical;
 }
 
+/* Custom styles for the calendar */
+.custom-calendar {
+  width: 300px;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-bottom: 20px; /* Add some margin at the bottom */
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile--now,
+.react-calendar__tile--hover,
+.react-calendar__tile--hasActive {
+  background-color: #f7cc53;
+  color: #fff;
+}
+
+.react-calendar__tile--active:hover,
+.react-calendar__tile--now:hover,
+.react-calendar__tile--hover:hover,
+.react-calendar__tile--hasActive:hover {
+  background-color: #f7cc53;
+  color: #fff;
+}
+
 .submit-button {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  background: Green;
-  color: White;
-  border-radius: 2px;
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
   cursor: pointer;
+  border-radius: 4px;
+}
+
+.submit-button:hover {
+  background-color: #45a049; /* Darker green */
 }
