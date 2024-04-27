@@ -5,7 +5,7 @@ import Navbar from "../Navbar";
 import "./index.css";
 
 const StudLogin = () => {
-  // const { login } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
@@ -24,32 +24,38 @@ const StudLogin = () => {
 
     setUser({ ...user, [name]: value })
   }
-  const LoginData = async(e) =>{
+  const LoginData = async (e) => {
     e.preventDefault();
 
-    const{email,password}=user;
+    const { email, password } = user;
     if (!email.endsWith("@stu.upes.ac.in")) {
       setError("Invalid Email for a Student! Please Try Again!");
       return;
     }
 
-    const res= await fetch("http://localhost:5001/api/students/login",{ 
+    const res = await fetch("http://localhost:5001/api/students/login", {
       method: "POST",
-      headers:{
+      headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email,password
+        email, password
       })
     });
     const data = await res.json();
-  
-    if (data.status === 400 || !data){
+    if (!data.accessToken) {
+      throw new Error("Access token not received.");
+    }
+    // login(data.accessToken, data.userData);
+    // console.log(data.accessToken);
+
+    if (data.status === 400 || !data) {
       setError("Something went wrong! Please Try Again!");
     }
-    else{
+    else {
       localStorage.setItem("accessToken", data.accessToken);
-      navigate("/Students");
+      navigate("/Students", { state: { accessToken: data.accessToken } });
+
     }
   }
 

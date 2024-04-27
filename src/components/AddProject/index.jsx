@@ -1,18 +1,20 @@
 import { useState } from "react";
 import Navbar from "../Navbar";
 import "./index.css";
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { useNavigate,useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const AddProject = () => {
+  const location = useLocation();
+  console.log("Location state:", location.state); 
+  const accessToken = location.state && location.state.accessToken;
   const [formData, setFormData] = useState({
     project_name: "",
     members: [],
-    domain: "",
     mentors: [],
     coordinators: [],
-    evaluator: [],
-    // customDomain: "",
+    evaluators: [],
   });
 
   const navigate = useNavigate();
@@ -23,19 +25,16 @@ const AddProject = () => {
     const {
       project_name,
       members,
-      domain,
       mentors,
       coordinators,
-      evaluator,
-      // customDomain,
+      evaluators,
     } = formData;
     const projectDetails = {
       project_name,
       members,
-      domain,
       mentors,
       coordinators,
-      evaluator,
+      evaluators,
     };
     if (!project_name) {
       window.alert("Enter project name");
@@ -49,35 +48,34 @@ const AddProject = () => {
       window.alert("Enter mentors name");
     } else if (!coordinators) {
       window.alert("Enter academic coordinator name");
-    } else if (!evaluator) {
+    } else if (!evaluators) {
       window.alert("Enter evaluator name");
     } else {
+      console.log(accessToken);
       try {
-        const response = await fetch('http://localhost:5001/api/projects/create', {
+        const response = await fetch("http://localhost:5001/api/projects/create", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ', //figure out this
           },
           body: JSON.stringify(projectDetails),
         });
-  
+        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to create project');
         }
         setFormData({
           project_name: "",
           members: [],
-          domain: "",
           mentors: [],
           coordinators: [],
-          evaluator: [],
+          evaluators: [],
         });
         window.alert("Form Submitted Successfully");
         navigate(-1);
       } catch (error) {
         console.error('Error creating project:', error);
-        window.alert('Failed to create project. Please try again later.');
+        // window.alert('Failed to create project. Please try again later.');
       }
     };
   };
@@ -190,14 +188,14 @@ const AddProject = () => {
               />
           </div>
           <div >
-            <label htmlFor="evaluator">Evaluator</label>
+            <label htmlFor="evaluators">Evaluator</label>
             <input
               type="text"
-              id="evaluator"
-              name="evaluator"
+              id="evaluators"
+              name="evaluators"
               className="form-control"
               placeholder="Enter Evaluator Name"
-              value={formData.evaluator}
+              value={formData.evaluators}
               onChange={handleChange}
               required
               />

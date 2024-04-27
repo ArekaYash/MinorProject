@@ -49,16 +49,16 @@ const Navbar = ({ isAuthenticated, userRole }) => {
       </>
     );
   };
+  const handleAddProject = () => {
+    navigate("/add-project", { state: { accessToken: localStorage.getItem("accessToken") } }); 
+  };
   const studentsNavbar = () => {
     return (
       <>
         <li>
-          <Link
-            to="/add-project"
-            className={isActiveRoute("/add-project") ? "active" : ""}
-          >
+        <button className="add-project-btn" onClick={handleAddProject}>
             Add Project
-          </Link>
+          </button>
         </li>
       </>
     );

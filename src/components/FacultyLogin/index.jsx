@@ -47,7 +47,8 @@ const FacultyLogin = () => {
     if (!data.accessToken) {
       throw new Error("Access token not received.");
     }
-    document.cookie = `accessToken=${data.accessToken}; path=/; SameSite=Strict; Secure`;
+    login(data.accessToken, data.userData);
+    // document.cookie = `accessToken=${data.accessToken}; path=/; SameSite=Strict; Secure`;
 
 
     if (data.status === 400 || !data) {
