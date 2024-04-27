@@ -1,102 +1,85 @@
 import { useState } from "react";
-// import axios from 'axios';
 import Navbar from "../Navbar";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const AddProject = () => {
   const [formData, setFormData] = useState({
-    projectName: "",
+    project_name: "",
     members: [],
     domain: "",
-    mentor: "",
-    ac: "",
-    evaluator: "",
-    customDomain: "",
+    mentors: [],
+    coordinators: [],
+    evaluator: [],
+    // customDomain: "",
   });
 
   const navigate = useNavigate();
 
-  const handleSubmitButton = (e) => {
+  const handleSubmitButton = async (e) => {
     // async
     e.preventDefault();
     const {
-      projectName,
+      project_name,
       members,
       domain,
-      mentor,
-      ac,
+      mentors,
+      coordinators,
       evaluator,
-      customDomain,
+      // customDomain,
     } = formData;
-
-    if (!projectName) {
+    const projectDetails = {
+      project_name,
+      members,
+      domain,
+      mentors,
+      coordinators,
+      evaluator,
+    };
+    if (!project_name) {
       window.alert("Enter project name");
     } else if (members.length === 0) {
       window.alert("Enter at least one member name");
-    } else if (!domain && !customDomain) {
-      window.alert("Enter domain");
-    } else if (!mentor) {
-      window.alert("Enter mentor name");
-    } else if (!ac) {
+    }
+    //  else if (!domain && !customDomain) {
+    //   window.alert("Enter domain");
+    // } 
+    else if (!mentors) {
+      window.alert("Enter mentors name");
+    } else if (!coordinators) {
       window.alert("Enter academic coordinator name");
     } else if (!evaluator) {
       window.alert("Enter evaluator name");
     } else {
-      const projectDetails = {
-        projectName,
-        members,
-        domain: customDomain || domain,
-        mentor,
-        ac,
-        evaluator,
-      };
-      let savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
-      localStorage.setItem(
-        "projects",
-        JSON.stringify([...savedProjects, projectDetails])
-      );
-      window.alert("Form Submitted Successfully");
-      navigate("/Home");
-      // try {
-      //   // Send POST request to backend server
-      //   const response = await axios.post('https://your-backend-api.com/projects', projectDetails);
-    
-      //   // Handle success response
-      //   console.log("Project details submitted successfully:", response.data);
-      //   window.alert("Project details submitted successfully");
-      //   navigate("/Home");
-      // } catch (error) {
-      //   // Handle error
-      //   console.error("Error submitting project details:", error);
-      //   window.alert("Failed to submit project details. Please try again later.");
-      // }
-    
-      //use fetch method also
-      // try {
-      //   const response = await fetch('your_backend_endpoint', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify(projectDetails),
-      //   });
-    
-      //   if (!response.ok) {
-      //     throw new Error('Network response was not ok');
-      //   }
-    
-      //   const responseData = await response.json();
-      //   console.log('Project details sent successfully:', responseData);
-    
-      //   // Handle any further actions after successful submission (e.g., redirecting the user)
-      //   window.alert("Form Submitted Successfully");
-      //   navigate("/Home");
-      // } catch (error) {
-      //   console.error('Error sending project details to backend:', error);
-      //   window.alert('An error occurred while submitting the form. Please try again later.');
-      // }
-    }
+      try {
+        const response = await fetch('http://localhost:5001/api/projects/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ', //figure out this
+          },
+          body: JSON.stringify(projectDetails),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to create project');
+        }
+        setFormData({
+          project_name: "",
+          members: [],
+          domain: "",
+          mentors: [],
+          coordinators: [],
+          evaluator: [],
+        });
+        window.alert("Form Submitted Successfully");
+        navigate(-1);
+      } catch (error) {
+        console.error('Error creating project:', error);
+        window.alert('Failed to create project. Please try again later.');
+      }
+    };
   };
 
   const handleChange = (e) => {
@@ -134,7 +117,7 @@ const AddProject = () => {
         onChange={(e) => handleMemberChange(e, index)}
         required
       />
-      {index > 0 && ( // Allow removing only for additional members (not the first one)
+      {index > 0 && ( 
         <button
           type="button"
           className="remove-btn"
@@ -150,7 +133,6 @@ const AddProject = () => {
   return (
     <div>
       <Navbar isAuthenticated={true} />
-
       <div className="banner-img" >
       <div className="background">
         <div className="title">
@@ -158,16 +140,16 @@ const AddProject = () => {
         </div>
       </div>
       <div >
-        <form onSubmit={handleSubmitButton}>
+        <form method='POST' >
           <div >
-            <label htmlFor="projectName">Project Name</label>
+            <label htmlFor="project_name">Project Name</label>
             <input
               type="text"
-              id="projectName"
-              name="projectName"
+              id="project_name"
+              name="project_name"
               className="form-control"
               placeholder="Enter Project Name"
-              value={formData.projectName}
+              value={formData.project_name}
               onChange={handleChange}
               required
               />
@@ -182,53 +164,27 @@ const AddProject = () => {
             )}
           </div>
           <div >
-            <label htmlFor="domain">Domain</label>
-            <select
-              id="domain"
-              name="domain"
-              className="form-control"
-              value={formData.domain}
-              onChange={handleChange}
-              required
-              >
-              <option value="">Select Domain</option>
-              <option value="Web Development">Web Development</option>
-              <option value="CyberSecurity">CyberSecurity</option>
-              <option value="Custom">Custom</option>
-            </select>
-            {formData.domain === "Custom" && (
-              <input
-              type="text"
-              className="form-control"
-              placeholder="Enter Custom Domain"
-              value={formData.customDomain}
-              onChange={handleChange}
-              required
-              />
-            )}
-          </div>
-          <div >
-            <label htmlFor="mentor">Mentor</label>
+            <label htmlFor="mentors">Mentor</label>
             <input
               type="text"
-              id="mentor"
-              name="mentor"
+              id="mentors"
+              name="mentors"
               className="form-control"
               placeholder="Enter Mentor Name"
-              value={formData.mentor}
+              value={formData.mentors}
               onChange={handleChange}
               required
               />
           </div>
           <div >
-            <label htmlFor="ac">Academic Coordinator</label>
+            <label htmlFor= "coordinators">Academic Coordinator</label>
             <input
               type="text"
-              id="ac"
-              name="ac"
+              id= "coordinators"
+              name= "coordinators"
               className="form-control"
               placeholder="Enter Academic Coordinator Name"
-              value={formData.ac}
+              value={formData.coordinators}
               onChange={handleChange}
               required
               />
@@ -247,7 +203,7 @@ const AddProject = () => {
               />
           </div>
           <div >
-            <button type="submit" className="submit-button">
+            <button type="submit" className="submit-button" onClick={handleSubmitButton}>
               Submit
             </button>
           </div>

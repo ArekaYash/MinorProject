@@ -20,6 +20,7 @@ import FacultyRegister from "./components/FacultyRegister";
 function App() {
   return (
     <AuthProvider>
+      
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,13 +33,13 @@ function App() {
           <Route path="/login-student" element={<StudLogin />} />
           <Route path="/stud-register" element={<StudentRegister />} />
           <Route path="/faculty-register" element={<FacultyRegister />} />
-          <Route
-            path="/faculty/academic-coordinator"
-            element={<AcademicCoordinatorPage />}
-          />
+          <Route path="/faculty/academic-coordinator"element={<AcademicCoordinatorPage />}/>
           <Route path="/faculty/evaluator" element={<EvaluatorPage />} />
           <Route path="/faculty/mentor" element={<MentorPage />} />
-          <Route path="/Students" element={<StudentDashboard />} />
+          <Route
+          path="/Students"
+          element={<StudentDashboard />}
+          />
           <Route path="/faculty" element={<FacultyDashboard />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

@@ -4,9 +4,13 @@ import "./index.css";
 
 const Navbar = ({ isAuthenticated, userRole }) => {
   const location = useLocation();
-  // const { login } = useAuth();
+  const { logout } = useAuth();
   const isActiveRoute = (routePath) => {
     return location.pathname === routePath;
+  };
+
+  const handleLogout = () => {
+    logout(); // Call logout function
   };
   const facultyACNavbar = () => {
     return (
@@ -92,7 +96,7 @@ const Navbar = ({ isAuthenticated, userRole }) => {
                   to="/login"
                   className={isActiveRoute("/login") ? "active" : ""}
                 >
-                  <button className={"logout"}>Logout</button>
+                  <button className={"logout"} onClick={handleLogout}>Logout</button>
                 </Link>
               </li>
             )}

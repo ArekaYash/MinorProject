@@ -10,7 +10,7 @@ const StudentLogin = () => {
   const [error, setError] = useState("");
 
   const [user, setUser] = useState({
-    name: "", sap: "", email: "", password: "", cpassword: ""
+    name: "", sap_id: "", email: "", password: "", cpassword: ""
   });
 
   let name, value;
@@ -25,7 +25,7 @@ const StudentLogin = () => {
   const PostData = async(e) =>{
     e.preventDefault();
 
-    const{name,sap,email,password,cpassword}=user;
+    const{name,sap_id,email,password,cpassword}=user;
     if (!email.endsWith("@stu.upes.ac.in")) {
       setError("Invalid Email for a Student! Please Try Again!");
       return;
@@ -35,13 +35,13 @@ const StudentLogin = () => {
       return;
     }
 
-    const res= await fetch("apitodirect",{ //yaha pe backend ka route daalna hai /register
+    const res= await fetch("http://localhost:5001/api/students/register",{ 
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name,sap,email,password
+        name,email,sap_id,password
       })
     });
     const data = await res.json();
@@ -74,8 +74,8 @@ const StudentLogin = () => {
             <label>SAP ID:</label>
             <input
               type="text"
-              name="sap"
-              value={user.sap}
+              name="sap_id"
+              value={user.sap_id}
               onChange={handleInputs}
               required
             />

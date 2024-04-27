@@ -5,20 +5,15 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 const FacultyDashboard = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   console.log("Hello inside faculty dashboard");
-  const extractUsername = (email) => {
-    const atIndex = email.indexOf('@');
-    return email.substring(0, atIndex);
-  };
 
   return (<>
   <Navbar isAuthenticated={true} userRole={'faculty'}/>
 
   <div className="banner-img">
     <div className='dashboard-container'>
-      <h2>Welcome {extractUsername(user.email)} to Faculty Dashboard !!</h2>
-      {user && (
+      <h2>Welcome to Faculty Dashboard !!</h2>
         <>
         <br />
         <h3 align="center">View as</h3>
@@ -36,7 +31,7 @@ const FacultyDashboard = () => {
         </button>
         </div>
         </>
-      )}
+      
     </div>
       </div>
       </>

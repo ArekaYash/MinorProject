@@ -2,34 +2,29 @@ import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  const login = (email, password) => {
-    if (email.endsWith('@ddn.upes.ac.in')) {
-      // Faculty user
-      setUser({ email });
-    } else if (email.endsWith('@stu.upes.ac.in')) {
-      // Student user
-      setUser({ email });
-    } else {
-      // Invalid user
-      setUser(null);
-    }
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem("accessToken") ? true : false;
+  });
+  const [user, setUser] = useState(null); 
+  
+  const login = (accessToken, userData) => {
+    localStorage.setItem("accessToken", accessToken);
+    setIsAuthenticated(true);
+    setUser(userData);
   };
-
   const logout = () => {
-    setUser(null);
+    localStorage.removeItem("accessToken");
+    setIsAuthenticated(false);
+    setUser(null); 
   };
-  const isAuthenticated = !!user; 
-
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
+};
+export const useAuth = () => {
+  return useContext(AuthContext);
 };
