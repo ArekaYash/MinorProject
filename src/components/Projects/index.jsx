@@ -64,18 +64,20 @@ const Projects = () => {
   return (
     <>
       <Navbar isAuthenticated={true} />
+      <div className="banner-img">
+
       <div className="projects">
-        <div className="background">
+        
           <div className="title">
             <h2>Projects</h2>
           </div>
-        </div>
+        
         <div className="section">
           <div className="page">
             {error ? (
               <div className="card">No projects</div>
             ) : (
-
+              
               projects.map(({ _id, project_name, members, mentors, coordinators, evaluators }) => (
                 <div className="list" key={_id}>
                   <div className="card">
@@ -100,6 +102,7 @@ const Projects = () => {
             )}</div>
         </div>
       </div>
+            </div>
     </>
   );
 };

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./index.css";
-import Calendar from "react-calendar"; // Import Calendar component
+import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
 
 const Schedule = () => {
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState(new Date()); // State to track selected date
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const OnformSubmit = () => {
     if (!selectedDate) {
@@ -17,26 +18,31 @@ const Schedule = () => {
   };
 
   return (
-    <div className="apply-job">
-      <div className="container">
-        <header className="header">
-          <h1 className="post">Select Date</h1>
-        </header>
+    <>
+      <Navbar />
+      <div className="banner-img">
 
-        <Calendar onChange={setSelectedDate} value={selectedDate} />
-        <form>
-          <div className="form-group">
+        <div className="apply-job">
+          <div className="container">
+
+            <h2><span>Select Date</span></h2>
+
+
+            <Calendar onChange={setSelectedDate} value={selectedDate} />
+            <br />
             <button
               type="submit"
-              className="submit-button"
+              className="button"
               onClick={OnformSubmit}
             >
               Submit
             </button>
+
+
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

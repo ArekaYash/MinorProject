@@ -11,6 +11,14 @@
   align-items: center;
   background-color: #fff;
 }
+.projects .section {
+  /* width: fit-content; */
+  background-color: transparent;  
+  /* margin-left: 10px; */
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
 .card:hover {
   box-shadow: 1px 2px 5px 5px rgba(222, 217, 217, 0.75);
   -webkit-box-shadow: 1px 2px 5px 5px rgba(222, 217, 217, 0.75);

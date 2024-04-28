@@ -6,8 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 const FacultyDashboard = () => {
   // const { user } = useAuth();
-  console.log("Hello inside faculty dashboard");
-
+  
   return (<>
   <Navbar isAuthenticated={true} userRole={'faculty'}/>
 
