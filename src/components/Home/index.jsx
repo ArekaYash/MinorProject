@@ -15,7 +15,7 @@ const Home = () => {
     {
       name: "Manan Singh",
       description: "Researcher\n B.Tech. CSE (Spl.CSF)\n 3rd Year, UPES",
-      imageUrl: "",
+      imageUrl: "src/assets/Manan.jpg",
     },
     {
       name: "Siddhant Srivastava",
