@@ -11,7 +11,7 @@ const StudLogin = () => {
   // const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
 
   const [user, setUser] = useState({
     email: "", password: ""
@@ -26,10 +26,12 @@ const StudLogin = () => {
   }
   const LoginData = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const { email, password } = user;
     if (!email.endsWith("@stu.upes.ac.in")) {
       setError("Invalid Email for a Student! Please Try Again!");
+      setIsLoading(false);
       return;
     }
 
@@ -57,11 +59,12 @@ const StudLogin = () => {
       navigate("/Students", { state: { accessToken: data.accessToken } });
 
     }
+    setIsLoading(false); 
   }
 
   return (
     <>
-      <Navbar isAuthenticated={isAuthenticated} />
+      <Navbar />
       <div className="banner-img">
         <div>
           <h2 align="center">
@@ -85,7 +88,17 @@ const StudLogin = () => {
               required
             />
             {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
-            <button type="submit" onClick={LoginData}>Login</button>
+            <button type="submit" className="button-container" onClick={LoginData} disabled={isLoading}>
+              {isLoading ? (
+                <span className="button-container">
+                     
+                  <span className="spinner" />
+                       Please wait
+                </span>
+              ) : (
+                "Login"
+              )}
+            </button>
             <p style={{ textAlign: "center", marginTop: "10px" }}>
               Don't have an account?{" "}
               <a href="/stud-register" style={{ color: "blue" }}>

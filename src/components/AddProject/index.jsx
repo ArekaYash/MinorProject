@@ -29,6 +29,7 @@ const AddProject = () => {
       coordinators,
       evaluators,
     } = formData;
+    
     const projectDetails = {
       project_name,
       members,
@@ -51,15 +52,16 @@ const AddProject = () => {
     } else if (!evaluators) {
       window.alert("Enter evaluator name");
     } else {
-      console.log(accessToken);
+      console.log(projectDetails);
       try {
-        const response = await fetch("http://localhost:5001/api/projects/create", {
+        const response = await fetch("http://localhost:5004/api/projects/create", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(projectDetails),
         });
+        console.log(response.body);
         console.log(response);
         if (!response.ok) {
           throw new Error('Failed to create project');

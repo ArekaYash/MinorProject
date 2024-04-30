@@ -42,6 +42,7 @@ const Projects = () => {
         throw new Error(`Failed to fetch project details for project ID ${projectId}`);
       }
       const projectData = await response.json();
+      console.log(projectData);
       const { project_name, members, mentors, coordinators, evaluators } = projectData.project;
       const memberNames = members.map(member => member.name);
       const mentorNames = mentors.map(mentor => mentor.name);
