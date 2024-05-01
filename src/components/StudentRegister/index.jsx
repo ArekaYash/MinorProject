@@ -8,6 +8,7 @@ const StudentLogin = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [user, setUser] = useState({
     name: "", sap_id: "", email: "", password: "", cpassword: ""
@@ -24,10 +25,12 @@ const StudentLogin = () => {
 
   const PostData = async(e) =>{
     e.preventDefault();
+    setIsLoading(true);
 
     const{name,sap_id,email,password,cpassword}=user;
     if (!email.endsWith("@stu.upes.ac.in")) {
       setError("Invalid Email for a Student! Please Try Again!");
+      setIsLoading(false);
       return;
     }
     if (password !== cpassword) {
@@ -52,6 +55,7 @@ const StudentLogin = () => {
       window.alert("Registration Successful ! Login to your Account. ");
       navigate("/login-student");
     }
+    setIsLoading(false); 
   }
 
   return (
@@ -106,7 +110,17 @@ const StudentLogin = () => {
               required
             />
             {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
-            <button type="submit" onClick={PostData}>Login</button>
+            <button type="submit" className="button-container" onClick={LoginData} disabled={isLoading}>
+              {isLoading ? (
+                <span className="button-container">
+                     
+                  <span className="spinner" />
+                       Please wait
+                </span>
+              ) : (
+                "Register"
+              )}
+            </button>
           </form>
         </div>
       </div>

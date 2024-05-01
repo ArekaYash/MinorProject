@@ -10,7 +10,7 @@ const FacultyLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
@@ -27,10 +27,13 @@ const FacultyLogin = () => {
   }
   const LoginData = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const { email, password } = user;
+
     if (!email.endsWith("@ddn.upes.ac.in")) {
       setError("Invalid Email for a Faculty! Please Try Again!");
+      setIsLoading(false);
       return;
     }
 
@@ -58,6 +61,7 @@ const FacultyLogin = () => {
       localStorage.setItem("accessToken", data.accessToken);
       navigate("/faculty");
     }
+    setIsLoading(false); 
   }
 
 return (
@@ -86,7 +90,17 @@ return (
             required
           />
           {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
-          <button type="submit" onClick={LoginData}>Login</button>
+          <button type="submit" className="button-container" onClick={LoginData} disabled={isLoading}>
+              {isLoading ? (
+                <span className="button-container">
+                     
+                  <span className="spinner" />
+                       Please wait
+                </span>
+              ) : (
+                "Login"
+              )}
+            </button>
           <p style={{ textAlign: "center", marginTop: "10px" }}>
             Don't have an account?{" "}
             <a href="/faculty-register" style={{ color: "blue" }}>

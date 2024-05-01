@@ -8,6 +8,7 @@ const FacultyLogin = () => {
   // const history = useHistory();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [user, setUser] = useState({
     name: "", sap_id: "", email: "", password: "", cpassword: ""
@@ -23,10 +24,13 @@ const FacultyLogin = () => {
 
   const PostData = async(e) =>{
     e.preventDefault();
+    setIsLoading(true);
+
 
     const{name,sap_id,email,password,cpassword}=user;
     if (!email.endsWith("@ddn.upes.ac.in")) {
       setError("Invalid Email for a Faculty! Please Try Again!");
+      setIsLoading(false); 
       return;
     }
     if (password !== cpassword) {
@@ -51,6 +55,7 @@ const FacultyLogin = () => {
       window.alert("Registration Successful ! Login to your Account. ");
       navigate("/login-faculty");
     }
+    setIsLoading(false); 
   }
 
   return (
@@ -105,7 +110,17 @@ const FacultyLogin = () => {
               required
             />
             {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
-            <button type="submit" onClick={PostData}>Register</button>
+            <button type="submit" className="button-container" onClick={LoginData} disabled={isLoading}>
+              {isLoading ? (
+                <span className="button-container">
+                     
+                  <span className="spinner" />
+                       Please wait
+                </span>
+              ) : (
+                "Register"
+              )}
+            </button>
           </form>
         </div>
       </div>
