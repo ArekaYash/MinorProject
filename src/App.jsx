@@ -16,6 +16,7 @@ import EvaluatorPage from "./components/EvaluatorPage";
 import MentorPage from "./components/MentorPage";
 import StudentRegister from "./components/StudentRegister";
 import FacultyRegister from "./components/FacultyRegister";
+// import Routes from "./routes"; //use when separating the routes into index.jsx of routes
 
 function App() {
   return (
@@ -49,3 +50,17 @@ function App() {
 }
 
 export default App;
+
+
+// import AuthProvider from "./provider/authProvider";
+// import Routes from "./routes";
+
+// function App() {
+//   return (
+//     <AuthProvider>
+//       <Routes />
+//     </AuthProvider>
+//   );
+// }
+
+// export default App;
