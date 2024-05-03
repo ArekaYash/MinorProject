@@ -11,6 +11,7 @@ const Home = () => {
       name: "Harshit Saraswat",
       description: "Backend Developer\n B.Tech. CSE (Spl.CSF)\n 3rd Year, UPES",
       imageUrl: "src/assets/Harshit.jpg",
+      linkedinUrl:"https://www.linkedin.com/in/harshit-saraswat-848257125/"
     },
     {
       name: "Manan Singh",
@@ -22,12 +23,14 @@ const Home = () => {
       description:
         "Frontend Developer\n B.Tech.(H) CSE (Spl.CSF)\n 3rd Year, UPES",
       imageUrl: "src/assets/Siddhant1.JPG",
+      linkedinUrl:"https://www.linkedin.com/in/siddhantsrivastava21/"
     },
     {
       name: "Yashvardhan Arekapudi",
       description:
         "Frontend Developer\n B.Tech.(H) CSE (Spl.CSF)\n 3rd Year, UPES",
       imageUrl: "src/assets/Yashvardhan.jpeg",
+      linkedinUrl:"https://www.linkedin.com/in/yashvardhanarekapudi/"
     },
   ];
 
@@ -36,7 +39,9 @@ const Home = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    slidesToScroll: 1
   };
 
   return (
@@ -61,7 +66,13 @@ const Home = () => {
             {creators.map((creator, index) => (
               <div key={index} className="slick-slide">
                 <div className="card">
-                  <img src={creator.imageUrl} alt={creator.name} />
+                {creator.linkedinUrl ? (
+                    <a href={creator.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                      <img src={creator.imageUrl} alt={creator.name} />
+                    </a>
+                  ) : (
+                    <img src={creator.imageUrl} alt={creator.name} />
+                  )}
                   <div className="text">
                     <h4>{creator.name}</h4>
                     <p>{creator.description}</p>
@@ -71,6 +82,8 @@ const Home = () => {
             ))}
           </Slider>
         </div>
+      <br></br>
+      <br></br>
       <br></br>
       <br></br>
       </div>
